@@ -10,6 +10,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   FocusNode _focusNode = FocusNode();
 
+  var _selectedIndexPage = 0;
   @override
   void initState() {
     super.initState();
@@ -24,18 +25,24 @@ class _MainPageState extends State<MainPage> {
     super.dispose();
   }
 
+  void _openPage(int index){
+    setState(() => _selectedIndexPage = index);
+  }
+
   @override
   Widget build(BuildContext context) {
+    final String assetNamePath = 'assets/images/ellipse.svg';
+    AssetImage imageFromAssetImage = AssetImage(assetNamePath);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.lightBlue,
-        toolbarHeight: 120,
+        toolbarHeight: 140,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
-                Icon(Icons.shop, color: Colors.white),
+                Icon(Icons.border_all),
                 SizedBox(width: 8),
                 Text(
                   'Medtehnika - path to health',
@@ -75,7 +82,8 @@ class _MainPageState extends State<MainPage> {
           ],
         ),
       ),
-      body: Container(
+      body: SingleChildScrollView(
+        child: Container(
         width: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -85,6 +93,20 @@ class _MainPageState extends State<MainPage> {
             Categories(),
           ],
         ),
+      ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        unselectedItemColor: Colors.grey,
+        selectedItemColor: Colors.blue,
+        currentIndex: _selectedIndexPage,
+        onTap: _openPage,
+        items: const [
+        BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Главная'),
+        BottomNavigationBarItem(icon: Icon(Icons.settings_input_component_sharp),label: 'Каталог'),
+        BottomNavigationBarItem(icon: Icon(Icons.shopping_basket),label: 'Корзина'),
+        BottomNavigationBarItem(icon: Icon(Icons.description),label: 'Список'),
+        BottomNavigationBarItem(icon: Icon(Icons.account_circle),label: 'Профиль'),
+      ]
       ),
     );
   }
@@ -98,10 +120,9 @@ class Categories extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
       child: Container(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start, 
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -111,6 +132,169 @@ class Categories extends StatelessWidget {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ],
+            ),
+            const SizedBox(height: 8),
+            SizedBox(
+              height: 150, 
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: List.generate(5, (index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 16),
+                      child: Container(
+                        width: 120,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey, width: 1),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        padding: const EdgeInsets.all(8),
+                        child: Column(
+                          children: [
+                            Icon(Icons.title, weight: 75),
+                            const SizedBox(height: 8),
+                            const SizedBox(height: 70,),
+                            Text(
+                              'Категория ${index + 1}',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: 16),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }),
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  'Ходунки',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 150, 
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: List.generate(5, (index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 16),
+                      child: Container(
+                        width: 120,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey, width: 1),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        padding: const EdgeInsets.all(8),
+                        child: Column(
+                          children: [
+                            Icon(Icons.title, weight: 75),
+                            const SizedBox(height: 8),
+                            const SizedBox(height: 70,),
+                            Text(
+                              'Категория ${index + 1}',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: 16),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }),
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  'Ингаляторы',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 150, 
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: List.generate(5, (index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 16),
+                      child: Container(
+                        width: 120,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey, width: 1),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        padding: const EdgeInsets.all(8),
+                        child: Column(
+                          children: [
+                            Icon(Icons.title, weight: 75),
+                            const SizedBox(height: 8),
+                            const SizedBox(height: 70,),
+                            Text(
+                              'Категория ${index + 1}',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: 16),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }),
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  'Тонометры',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 150, 
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: List.generate(5, (index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 16),
+                      child: Container(
+                        width: 120,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey, width: 1),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        padding: const EdgeInsets.all(8),
+                        child: Column(
+                          children: [
+                            Icon(Icons.title, weight: 75),
+                            const SizedBox(height: 8),
+                            const SizedBox(height: 70,),
+                            Text(
+                              'Категория ${index + 1}',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: 16),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }),
+                ),
+              ),
             ),
           ],
         ),
