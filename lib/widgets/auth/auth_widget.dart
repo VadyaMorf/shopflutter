@@ -49,8 +49,8 @@ class _LoginWidgetState extends State<_LoginWidget>{
       errorText = 'Заполните пароль';
     }
 
-    if(login == 'admin' && password == 'admin'){
-      print('open app');
+    if(login == '' && password == ''){
+      Navigator.of(context).pushReplacementNamed('/main_page');
     }else{
       print('show error');
     }
